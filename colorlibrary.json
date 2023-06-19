@@ -4,5 +4,26 @@
     },
     "orange": {
         "hue": 5000
+    },
+    "yellow": {
+        "hue": 9500
+    },
+    "green": {
+        "hue": 25000
+    },
+    "teal": {
+        "hue": 34000
+    },
+    "blue": {
+        "hue": 46000
+    },
+    "purple": {
+        "hue": 50000
+    },
+    "magenta": {
+        "hue": 55000
+    },
+    "pink": {
+        "hue": 60000
     }
 }
