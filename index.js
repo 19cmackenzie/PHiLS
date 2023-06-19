@@ -17,4 +17,4 @@ const lightswitch = async (lightId, on) => { //simple lightswitch to test if the
     }
 };
 
-lightswitch(1, true);
+lightswitch(1, false);
