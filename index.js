@@ -9,13 +9,16 @@ let rawdata = fs.readFileSync('colorlibrary.json'); // converts .json informatio
 let colors = JSON.parse(rawdata);
 
 
-const lightswitch = async (lightId, on) => { //simple lightswitch to test if the information can be sent over WIFI, turns light on / off 
+const lightswitch = async (lightId, lightColor, on) => { //simple lightswitch to test if the information can be sent over WIFI, turns light on / off 
     try {
-        axios.put(`${URL}${lightId}/state`, {on, hue: 5000, sat: 255, bri:255,});
+        let hue = colors[lightColor].hue;
+        let sat = colors[lightColor].sat;
+
+        axios.put(`${URL}${lightId}/state`, {on, hue:hue, sat:sat, bri:255,});
         console.log();
     } catch (err) {
         console.error(err);
     }
 };
 
-lightswitch(1, true);
+lightswitch(1, 'warmwhite', true);
