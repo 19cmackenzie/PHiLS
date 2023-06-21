@@ -13,11 +13,11 @@ function lightswitch(lightId, lightColor, on) { //simple lightswitch to test if 
         let hue = colors[lightColor].hue; //index hue value from colorlibrary.json
         let sat = colors[lightColor].sat; //index saturation value from colorlibrary.json
 
-        axios.put(`${URL}${lightId}/state`, {on, hue:hue, sat:sat, bri:100,}); //send HTTP request
+        axios.put(`${URL}${lightId}/state`, {on, hue:hue, sat:sat, bri:255,}); //send HTTP request
         console.log();
     } catch (err) {
         console.error(err);
     }
 };
 
-lightswitch(1, 'red', false); //call lightswitch function (specify light, color of light, and on/off state)
+lightswitch(1, 'orange', true); //call lightswitch function (specify light, color of light, and on/off state)
