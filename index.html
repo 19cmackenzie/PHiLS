@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="sliderContainer">
+        <input type="range" min="0" max="255" value="0" class="slider" id="mySlider">
+        <p id="sliderValue">50</p>
+    </div>
+</body>
+<script>
+    // Get the slider element
+const slider = document.getElementById("mySlider");
+
+// Get the value display element
+const sliderValue = document.getElementById("sliderValue");
+
+// Update the value display with the initial value
+sliderValue.textContent = slider.value;
+
+// Add an event listener for input changes
+slider.addEventListener("input", function() {
+    // Update the value display
+    sliderValue.textContent = slider.value;
+});
+</script>
+</html>
