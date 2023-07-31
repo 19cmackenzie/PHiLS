@@ -1,9 +1,8 @@
 const axios = require('axios'); // axios is the software used to sent HTTP requests.
-const { randomInt } = require('crypto');
 const fs = require('fs'); // fs (fileSystem) is the software used to read between files
 
-const USERNAME = "bUrp9C1fJD7CnkOyTILhNJdx-YIKB28PKSfXg0Kk"; // username needed to verify a legitamate request specific only to my hueBridge
-const IP = '192.168.1.62'; //IP of the Huebridge, the modem that sends HTTP requests to the lights over local WIFI
+const USERNAME = "7XQYtgKtcn6vZ2rcFSZD04aeAzYJt3OLzsDlev51"; // username needed to verify a legitamate request specific only to my hueBridge
+const IP = '192.168.1.160'; //IP of the Huebridge, the modem that sends HTTP requests to the lights over local WIFI
 const URL = `http://${IP}/api/${USERNAME}/lights/`; // the full HTTP directory
 
 let rawdata = fs.readFileSync('library.json'); // converts .json information from bytes into string form
@@ -11,7 +10,7 @@ let library = JSON.parse(rawdata);
 
 
 function lightswitch(lightId, onOff) { //simple lightswitch to send information over WIFI, turns light on / off 
-    try {
+    try {no
         axios.put(`${URL}${lightId}/state`, {on:onOff}); //send HTTP request
         console.log(lightId, onOff); //DEBUG
     } catch (err) {
@@ -43,10 +42,8 @@ function fade(lightID, targetColor, transitionTime){ // fade between light color
 
 // below are some values that call these defined fuctions. feel free to have fun using them.
 
-lightswitch(1, true) //lightID, on/off state
-fade(1, "orange", 100) //lightID, Color, transitiontime(milliseconds)
-setColor(1, "orange") //lightID, Color
-brightness(1, 205) //light ID, brightness (1-255)
+lightswitch(2, false) //lightID, on/off state
+
 
 
 
