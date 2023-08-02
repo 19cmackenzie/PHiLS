@@ -38,10 +38,16 @@
 
 #buttonContainer button{
   padding:20px;
-  margin: 0 10px;
+  margin: 5px 10px;
   border: solid white 1px;
   border-radius: 25px;
+  
 }
 #buttonContainer button:hover{
   border: solid black 1px;
+}
+
+.slider, .commandButton{
+  display: block;
+  margin: 5px auto;
 }
