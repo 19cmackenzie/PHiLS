@@ -7,7 +7,7 @@
         },
         "warmwhite": {
             "hue": 8000,
-            "sat": 125
+            "sat": 125 
         },
         "coldwhite": {
             "hue": 43000,
@@ -39,7 +39,7 @@
         },
         "purple": {
             "hue": 50000,
-            "sat": 255
+            "sat": -255
         },
         "magenta": {
             "hue": 55000,

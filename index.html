@@ -8,30 +8,30 @@
 </head>
 <body id="bodyColor">
     <div class="container">
-            <p>hue</p>
+            <p>Hue</p>
+            <p><span id="hueSliderValue">0</span></p>
             <input type="range" min="0" max="60000" value="0" class="slider" id="hueSlider">
-            <p>saturation</p>
-            <input type="range" min="0" max="255" value="0" class="slider" id="saturationSlider">
+            <p>Saturation</p>
+            <input type="range" min="0" max="255" value="255" class="slider" id="satSlider">
             <button type="button" class="commandButton">Confirm</button>
     </div>
     <div class="container" id="buttonContainer">
-        <button type="button" id="red"></button>
-        <button type="button" id="orange"></button>
-        <button type="button" id="yellow"></button>
-        <button type="button" id="teal"></button>
-        <button type="button" id="green"></button>
-        <button type="button" id="blue"></button>
-        <button type="button" id="pink"></button>
-        <button type="button" id="purple"></button>
+        <button type="button" id="red" class="quickColorButton" hueValue="0" satValue="255"></button>
+        <button type="button" id="orange" class="quickColorButton" hueValue="5000" satValue="255"></button>
+        <button type="button" id="yellow" class="quickColorButton" hueValue="9500" satValue="255"></button>
+        <button type="button" id="green" class="quickColorButton" hueValue="25000" satValue="255"></button>
+        <button type="button" id="teal" class="quickColorButton" hueValue="30000" satValue="255"></button>
+        <button type="button" id="blue" class="quickColorButton" hueValue="40000" satValue="255"></button>
+        <button type="button" id="purple" class="quickColorButton" hueValue="48000" satValue="255"></button>
+        <button type="button" id="pink" class="quickColorButton" hueValue="50000" satValue="255"></button>
     </div>
     <div class="container">
-        <p>brightness</p>
-        <input type="range" min="0" max="255" value="50" class="slider" id="saturationSlider">
+        <p>Brightness</p>
+        <input type="range" min="0" max="255" value="50" class="slider" id="brightnessSlider">
         <button type="button" class="commandButton">Confirm</button>
-        <input type="checkbox" class="commandButton">on/off</input>
+        <input type="checkbox" class="commandButton">On/Off</input>
     </div>
     <script src="script.js"></script>
+    <script src="api.js"></script>
 </body>
-<script src="Deskstop/VSCode/AS91906-project-3.7/PHiLS/api.js">
-</script>
 </html>
