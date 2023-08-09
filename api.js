@@ -10,7 +10,7 @@ let library = JSON.parse(rawdata);
 
 
 function lightswitch(lightId, onOff) { //simple lightswitch to send information over WIFI, turns light on / off 
-    try {no
+    try {
         axios.put(`${URL}${lightId}/state`, {on:onOff}); //send HTTP request
         console.log(lightId, onOff); //DEBUG
     } catch (err) {
@@ -42,4 +42,5 @@ function fade(lightID, targetColor, transitionTime){ // fade between light color
 
 // below are some values that call these defined fuctions. feel free to have fun using them.
 
-lightswitch(2, false) //lightID, on/off state
+// lightswitch(2, false) //lightID, on/off state
+

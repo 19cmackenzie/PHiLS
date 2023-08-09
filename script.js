@@ -1,9 +1,9 @@
+
 // get id values from HTML
 const hueSlider = document.getElementById("hueSlider");
 const satSlider = document.getElementById("satSlider");
 const bodyColor = document.getElementById("bodyColor");
 const buttonContainer = document.getElementById('buttonContainer');
-
 //event listeners
 hueSlider.addEventListener("input", validateChosenColor);
 satSlider.addEventListener("input", validateChosenColor);
@@ -31,6 +31,21 @@ function validateChosenColor() {
     const hslColor = `hsl(${colorValue / 167}, 100%, ${100 - saturationValue / 5.1}%)`;
     // update the background color of the body
     bodyColor.style.backgroundColor = hslColor;
+
+    fetch(`http://localhost:3000/getColorValue?sat=${saturationValue}&hue=${colorValue}`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Process the data received from the API
+        console.log(data)
+    })
+    .catch(error => {
+        console.error("Error fetching data:", error);
+    });
 }
 
 // call the validateChosenColor function to set the initial color. will update as the eventListeners update
