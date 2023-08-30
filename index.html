@@ -12,7 +12,6 @@
             <input type="range" min="0" max="60000" value="0" class="slider" id="hueSlider">
             <p>Saturation</p>
             <input type="range" min="0" max="255" value="255" class="slider" id="satSlider">
-            <button type="button" class="commandButton">Confirm</button>
     </div>
     <div class="container" id="buttonContainer">
         <button type="button" id="red" class="quickColorButton" hueValue="0" satValue="255"></button>
@@ -26,9 +25,8 @@
     </div>
     <div class="container">
         <p>Brightness</p>
-        <input type="range" min="0" max="255" value="50" class="slider" id="brightnessSlider">
-        <button type="button" class="commandButton">Confirm</button>
-        <input type="checkbox" class="commandButton">On/Off</input>
+        <input type="range" min="0" max="255" value="50" class="slider" id="briSlider">
+        <input type="checkbox" id="onOff">On/Off</input>
     </div>
     <script src="script.js"></script>
     <script src="api.js"></script>

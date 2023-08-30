@@ -42,5 +42,5 @@ function fade(lightID, targetColor, transitionTime){ // fade between light color
 
 // below are some values that call these defined fuctions. feel free to have fun using them.
 
-// lightswitch(2, false) //lightID, on/off state
+lightswitch(2, true) //lightID, on/off state
 
