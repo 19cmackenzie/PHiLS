@@ -1,12 +1,12 @@
 :root {
-  --hue-red: calc(0 / 167);
-  --hue-orange: calc(5000 / 167);
-  --hue-yellow: calc(9500 / 167);
-  --hue-green: calc(25000 / 167);
-  --hue-teal: calc(30000 / 167);
-  --hue-blue: calc(40000 / 167);
-  --hue-purple: calc(48000 / 167);
-  --hue-pink: calc(50000 / 167);
+  --hue-red: calc(0 / 181.5);
+  --hue-orange: calc(5000 / 181.5);
+  --hue-yellow: calc(9500 / 181.5);
+  --hue-green: calc(25000 / 181.5);
+  --hue-teal: calc(30000 / 181.5);
+  --hue-blue: calc(40000 / 181.5);
+  --hue-purple: calc(48000 / 181.5);
+  --hue-pink: calc(50000 / 181.5);
 }
 
 

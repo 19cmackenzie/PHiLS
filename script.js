@@ -27,7 +27,6 @@ function changeSlider(event) {
         // sets sliders to those position
         hueSlider.value = hueValue
         satSlider.value = satValue
-        briSlider.value = briValue
         
         //update the background with new slider location
         validateChoice();
@@ -43,17 +42,25 @@ function manageOnOffState () {
 
 
 function validateChoice() {
-   
+
     // get the color and saturation values from the sliders
+    const hueValue = hueSlider.value;
+    const satValue = satSlider.value;
+    
+    // convert the color and saturation values to HSL format by dividing their value by the right constant to make the ratios match
+    const hslColor = `hsl(${hueValue / 181.5}, 100%, ${100 - satValue / 5.1}%)`;
+    // update the background color of the body
+    bodyColor.style.backgroundColor = hslColor;
+
+}
+
+function sendDataRequest() {
+    
+    // get values of sliders
     const hueValue = hueSlider.value;
     const satValue = satSlider.value;
     const briValue = briSlider.value;
     const onOffValue = onOffState;
-    
-    // convert the color and saturation values to HSL format by dividing their value by the right constant to make the ratios match
-    const hslColor = `hsl(${hueValue / 167}, 100%, ${100 - satValue / 5.1}%)`;
-    // update the background color of the body
-    bodyColor.style.backgroundColor = hslColor;
 
     // prepare data to be sent through to API
     const colorData = {
@@ -73,8 +80,11 @@ function validateChoice() {
         body: JSON.stringify(colorData)
     }
     // send data using fetch(url, data) function
+
     fetch(`http://localhost:3000/sendLightData`, packager)
 }
 
 // call the validateChoice function to set the initial color. will update as the eventListeners update
 validateChoice();
+// ever 400 milliseconds, send data values from website to hueLight
+setInterval(sendDataRequest, 400)
