@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
@@ -12,6 +13,9 @@
             <input type="range" min="0" max="65355" value="0" class="slider" id="hueSlider">
             <p>Saturation</p>
             <input type="range" min="0" max="255" value="255" class="slider" id="satSlider">
+            <p>Brightness</p>
+            <input type="range" min="0" max="255" value="255" class="slider" id="briSlider">
+            <input type="checkbox" id="onOff">On/Off</input>
     </div>
     <div class="container" id="buttonContainer">
         <button type="button" id="red" class="quickColorButton" hueValue="0" satValue="255"></button>
@@ -22,11 +26,51 @@
         <button type="button" id="blue" class="quickColorButton" hueValue="40000" satValue="255"></button>
         <button type="button" id="purple" class="quickColorButton" hueValue="48000" satValue="255"></button>
         <button type="button" id="pink" class="quickColorButton" hueValue="50000" satValue="255"></button>
+        <button type="button" id="white" class="quickColorButton" hueValue="0" satValue="0"></button>
     </div>
-    <div class="container">
-        <p>Brightness</p>
-        <input type="range" min="0" max="255" value="50" class="slider" id="briSlider">
-        <input type="checkbox" id="onOff">On/Off</input>
+    <div class="container" id="advancedSettings">
+        <div  id="effectContainer">
+            <div class="effect" id="fade">
+                <button class="material-symbols-outlined">linear_scale</button>
+                <p>Fade</p>
+            </div>
+            <div class="effect" id="random">
+                <button class="material-symbols-outlined">shuffle</button>
+                <p>Random</p>
+            </div>
+            <div class="effect" id="flicker">
+                <button class="material-symbols-outlined">candle</button>
+                <p>Flicker</p>
+            </div>
+            <div class="effect" id="strobe">
+                <button class="material-symbols-outlined">storm</button> 
+                <p>Strobe</p>
+            </div>
+            
+        </div>
+        <div id="divider"></div>
+        <div id="themeContainer">
+            <button class="theme">
+                <div class="themeIcon"></div>
+                <div class="themeIcon"></div>
+                <div class="themeIcon"></div>
+            </button>
+            <button class="theme">
+                <div class="themeIcon"></div>
+                <div class="themeIcon"></div>
+                <div class="themeIcon"></div>
+            </button>
+            <button class="theme">
+                <div class="themeIcon"></div>
+                <div class="themeIcon"></div>
+                <div class="themeIcon"></div>
+            </button>
+            <button class="theme">
+                <div class="themeIcon"></div>
+                <div class="themeIcon"></div>
+                <div class="themeIcon"></div>
+            </button>
+        </div>
     </div>
     <script src="script.js"></script>
     <script src="api.js"></script>

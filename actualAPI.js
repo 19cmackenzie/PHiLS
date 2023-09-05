@@ -24,14 +24,17 @@ app.put('/sendLightData', (req, res) => {
   var bri = req.body.bri
   var onOff = req.body.onOff
 
+  console.log(`hue: ${hue} sat: ${sat} bri: ${bri} onOff: ${onOff} `)
   
   // send HTTP request to the bridge
   axios.put(`${URL}${lightID}/state`, {hue:parseFloat(hue), sat:parseFloat(sat), bri:parseFloat(bri), on:onOff})
   .then(response => {
     console.log(response.data)
   })
-  console.log(`hue: ${hue}  sat: ${sat}  bri: ${bri} onOff: ${onOff}`); // DEBUG
+  
   res.send()
+
+  
 }); 
 
 // Start the server
