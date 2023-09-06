@@ -1,3 +1,4 @@
+/* define values for buttons (unfortunately had to hard-code due to nature of CSS) */
 :root {
   --hue-red: calc(0 / 181.5);
   --hue-orange: calc(5000 / 181.5);
@@ -9,6 +10,7 @@
   --hue-pink: calc(50000 / 181.5);
 }
 
+/* apply correct background color to buttons  */
 #red{
   background-color: hsl(var(--hue-red), 100%, 50%);
 }
@@ -33,7 +35,7 @@
 #pink{
   background-color: hsl(var(--hue-pink), 100%, 50%);
 }
-
+/* google font library import */
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
@@ -42,10 +44,12 @@
   'opsz' 24
 }
 
+
 body{
   margin: 0 auto;
 }
 
+/* create the white bubble that content will be inside */
 .container{
   border-radius: 15px;
   margin: 20px 100px;
@@ -55,10 +59,12 @@ body{
   box-shadow: 1px 4px 8px 1px grey;
 }
 
+/* slider CSS */
 .slider{
   width: 100%;
 }
 
+/* button CSS */
 #buttonContainer button{
   padding:20px;
   margin: 5px 10px;
@@ -66,6 +72,7 @@ body{
   border-radius: 25px;
   
 }
+
 #buttonContainer button:hover{
   border: solid black 1px;
 }
@@ -82,6 +89,7 @@ button, #onOff, .slider, .effect button {
   display: flex;
 }
 
+/* effects CSS */
 #effectContainer {
   display: block;
   border: none;
@@ -116,6 +124,7 @@ button, #onOff, .slider, .effect button {
   margin: 0 10px;
 }
 
+/* themes CSS */
 #themeContainer{
   border: 1px blue solid;
   width: 50%;

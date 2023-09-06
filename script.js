@@ -9,26 +9,61 @@ const buttonContainer = document.getElementById('buttonContainer');
 const onOffButton = document.getElementById("onOff");
 let onOffState = onOffButton.checked;
 // effects
-const fade = document.getElementById("fade");
-const random = document.getElementById("random");
-const flicker = document.getElementById("flicker");
-const strobe = document.getElementById("strobe");
-
+const effectContainer = document.getElementById('effectContainer');
+let strobe = null;
+let flicker = null;
 
 //EVENT LISTENERS
 // sliders & buttons
 hueSlider.addEventListener("input", updateBackground);
 satSlider.addEventListener("input", updateBackground);
 briSlider.addEventListener("input", updateBackground);
-buttonContainer.addEventListener("click", matchSliderToColor);
+buttonContainer.addEventListener("click", matchSliderToButtonColor);
 onOffButton.addEventListener("click", manageOnOffState);
-// effects
-random.addEventListener("click", randomColor);
+effectContainer.addEventListener('click', manageEffects);
+
+// move hue& sat sliders to the specified values
+function updateColorSliders(hueValue, satValue) {
+    hueSlider.value = hueValue
+    satSlider.value = satValue
+}
 
 
+// manage the on/off state of the light 
+function manageOnOffState () {
+    // use '.checked' to see if the value of the onoff button is true / false
+    onOffState = onOffButton.checked;
+    updateBackground();
+}
 
 
-
+// manage effect button
+function manageEffects(event) {
+    if (event.target.matches('button.material-symbols-outlined')) {
+        // get value of button clicked
+        const effectValue = event.target.value;
+        
+        // stop any other looping effects
+        clearInterval(strobe);
+        clearInterval(fade);
+        clearInterval(flicker);
+        
+        // switch case statement (executes code depending on what button value it matches)
+        switch (effectValue) {
+            case '1':
+                fadeLight();
+            case '2':
+                randomColor();
+                break;
+            case '3':
+                flickerLight();
+                break;
+            case '4':
+                strobeLight();
+                break;
+        };
+    };
+}
 
 
 // generate a random number between two limits
@@ -36,6 +71,7 @@ function createRandNum(max, min) {
     let randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
     return randomInt;
 }
+
 
 //assign random color to background & sliders
 function randomColor() {
@@ -51,9 +87,9 @@ function randomColor() {
     updateBackground();
 }
 
-function updateColorSliders(hueValue, satValue) {
-    hueSlider.value = hueValue
-    satSlider.value = satValue
+// strobe loop
+function strobeLight() {
+    strobe = setInterval(randomColor, 500);
 }
 
 
@@ -74,13 +110,6 @@ function matchSliderToButtonColor(event) {
     }
 }
 
-// manage the on/off state of the light 
-function manageOnOffState () {
-    // use '.checked' to see if the value of the onoff button is true / false
-    onOffState = onOffButton.checked;
-    updateBackground();
-}
-
 // update the website's background color
 function updateBackground() {
     // get the color and saturation values from the sliders
@@ -94,6 +123,7 @@ function updateBackground() {
     bodyColor.style.backgroundColor = hslColor;
 
 }
+
 
 // send color data to API
 function sendDataRequest() {
@@ -122,11 +152,12 @@ function sendDataRequest() {
         body: JSON.stringify(colorData)
     }
     // send data using fetch(url, data) function
-
     fetch(`http://localhost:3000/sendLightData`, packager)
 }
+
 
 // call the updateBackground function to set the initial color. will update as the eventListeners update
 updateBackground();
 // every 400 milliseconds, send data values from website to API
-setInterval(sendDataRequest, 400)
+sendData = setInterval(sendDataRequest, 400)
+  

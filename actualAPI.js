@@ -27,11 +27,14 @@ app.put('/sendLightData', (req, res) => {
   console.log(`hue: ${hue} sat: ${sat} bri: ${bri} onOff: ${onOff} `)
   
   // send HTTP request to the bridge
-  axios.put(`${URL}${lightID}/state`, {hue:parseFloat(hue), sat:parseFloat(sat), bri:parseFloat(bri), on:onOff})
+  axios.put(`${URL}${lightID}/state`, {
+    hue:parseFloat(hue), 
+    sat:parseFloat(sat), 
+    bri:parseFloat(bri), 
+    on:onOff})
   .then(response => {
     console.log(response.data)
   })
-  
   res.send()
 
   
@@ -41,3 +44,4 @@ app.put('/sendLightData', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
