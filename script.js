@@ -1,32 +1,20 @@
-
 // SOURCE FROM HTML
-// sliders & buttons
 const hueSlider = document.getElementById("hueSlider");
 const satSlider = document.getElementById("satSlider");
 const briSlider = document.getElementById("briSlider");
 const bodyColor = document.getElementById("bodyColor");
 const buttonContainer = document.getElementById('buttonContainer');
+const effectContainer = document.getElementById('effectContainer');
 const onOffButton = document.getElementById("onOff");
 let onOffState = onOffButton.checked;
-// effects
-const effectContainer = document.getElementById('effectContainer');
-let strobe = null;
-let flicker = null;
 
 //EVENT LISTENERS
-// sliders & buttons
 hueSlider.addEventListener("input", updateBackground);
 satSlider.addEventListener("input", updateBackground);
 briSlider.addEventListener("input", updateBackground);
 buttonContainer.addEventListener("click", matchSliderToButtonColor);
 onOffButton.addEventListener("click", manageOnOffState);
 effectContainer.addEventListener('click', manageEffects);
-
-// move hue& sat sliders to the specified values
-function updateColorSliders(hueValue, satValue) {
-    hueSlider.value = hueValue
-    satSlider.value = satValue
-}
 
 
 // manage the on/off state of the light 
@@ -37,7 +25,7 @@ function manageOnOffState () {
 }
 
 
-// manage effect button
+// manage effect buttons
 function manageEffects(event) {
     if (event.target.matches('button.material-symbols-outlined')) {
         // get value of button clicked
@@ -47,22 +35,48 @@ function manageEffects(event) {
         clearInterval(strobe);
         clearInterval(fade);
         clearInterval(flicker);
+        //enable sliders again
+        hueSlider.disabled = false;
+        satSlider.disabled = false;
+        briSlider.disabled = false;
         
         // switch case statement (executes code depending on what button value it matches)
         switch (effectValue) {
             case '1':
-                fadeLight();
+                fade = setInterval(fadeEffect, 400);
+                hueSlider.disabled = true;
+                break
             case '2':
                 randomColor();
                 break;
             case '3':
-                flickerLight();
+                flicker = setInterval(flickerEffect, 400)
+                briSlider.disabled = true;
                 break;
             case '4':
-                strobeLight();
+                strobe = setInterval(randomColor, 400);
+                hueSlider.disabled = true;
+                satSlider.disabled = true;
                 break;
+            case '5':
+                none;
         };
     };
+}
+
+
+// fade through hues
+function fadeEffect() {
+    // get current value from slider
+    let hueValue = parseInt(hueSlider.value);
+    // add 100 units
+    hueValue += 100;
+    // once values exceed scale, return to 0
+    if (hueValue > 65355) {
+        hueValue = 0;
+    }
+    hueSlider.value = hueValue
+    updateBackground();
 }
 
 
@@ -79,17 +93,28 @@ function randomColor() {
     let hueValue = createRandNum(0, 65355)
     let satValue = createRandNum(0, 255)
     
-    // set sliders to those values
-    updateColorSliders(hueValue, satValue);
+    //set sliders to those values
+    hueSlider.value = hueValue
+    satSlider.value = satValue
     
     // change background color
-    console.log()
     updateBackground();
 }
 
-// strobe loop
-function strobeLight() {
-    strobe = setInterval(randomColor, 500);
+
+function flickerEffect() {
+    let briValue = parseInt(briSlider.value);
+    let min = briValue - 30;
+    let max = briValue + 30;
+    let newValue = createRandNum(max, min);
+    // ensure light doesn't turn off
+    if (newValue < 10) {
+        newValue = 10;
+    } else if (newValue > 210) {
+        newValue = 210
+    }
+    briValue = newValue;
+    briSlider.value = briValue
 }
 
 
@@ -98,12 +123,22 @@ function matchSliderToButtonColor(event) {
     // make sure a button is clicked, not the container itself
     if (event.target.classList.contains('quickColorButton')) {
         
+        // stop any effects on loop
+        clearInterval(strobe);
+        clearInterval(fade);
+        clearInterval(flicker);
+        // ensure sliders enables (incase clicked after an effect)
+        hueSlider.disabled = false;
+        satSlider.disabled = false;
+        briSlider.disabled = false;
+        
         // identifies the  hue/sat value of the button clicked
         let hueValue = event.target.getAttribute('hueValue');
         let satValue = event.target.getAttribute('satValue');
         
-        // sets sliders to those position
-        updateColorSliders(hueValue, satValue);
+        //sets sliders to those position
+        hueSlider.value = hueValue
+        satSlider.value = satValue
         
         //update the background with new slider location
         updateBackground();

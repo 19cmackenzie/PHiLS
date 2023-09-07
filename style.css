@@ -89,6 +89,10 @@ button, #onOff, .slider, .effect button {
   display: flex;
 }
 
+#stop button{
+  background-color: #EF5F5F;
+}
+
 /* effects CSS */
 #effectContainer {
   display: block;
@@ -126,7 +130,7 @@ button, #onOff, .slider, .effect button {
 
 /* themes CSS */
 #themeContainer{
-  border: 1px blue solid;
+    border: 1px blue solid;
   width: 50%;
 }
 
@@ -136,7 +140,7 @@ button, #onOff, .slider, .effect button {
   background-color: white;
   cursor: pointer;
   padding: 0 10;
-  margin: 5 ;
+  margin: 15 ;
   border: 1px pink solid;
   
 }
