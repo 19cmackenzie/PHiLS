@@ -95,17 +95,18 @@ button, #onOff, .slider, .effect button {
 
 /* effects CSS */
 #effectContainer {
-  display: block;
+  display: flex;
   border: none;
   background-color: white;
-  width: 50%;
+  width: 100%;
+
+ 
 
 }
 .effect{
-  display: flex; 
-  margin: 6 0;
-  align-items: center;
-  width:50%
+  margin: auto;
+  width:50%;
+  
 }
 
 .effect button{
@@ -113,47 +114,12 @@ button, #onOff, .slider, .effect button {
   width: 50px;
   height: 50px;
   border-radius: 100px;
-  border: 1px white solid;
-  border: none;
-  margin-right: 10px;
+  border: white solid 1px;
+
   
 }
 .effect button:hover{
   border: 1px black solid;
-}
-
-#divider{
-  border: 1px grey solid;
-  border-radius: 10px;
-  margin: 0 10px;
-}
-
-/* themes CSS */
-#themeContainer{
-    border: 1px blue solid;
-  width: 50%;
-}
-
-.theme {
-  display: flex;
-  border: none;
-  background-color: white;
-  cursor: pointer;
-  padding: 0 10;
-  margin: 15 ;
-  border: 1px pink solid;
-  
-}
-
-.themeIcon {
-  width: 50px;
-  height: 50px;
-  border-radius: 100%;
-  border: 1.5px solid black;
-  background-color: yellowgreen;
-  margin: 0 -10px; 
-  
-
 }
 
 *{

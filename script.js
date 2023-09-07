@@ -16,6 +16,11 @@ buttonContainer.addEventListener("click", matchSliderToButtonColor);
 onOffButton.addEventListener("click", manageOnOffState);
 effectContainer.addEventListener('click', manageEffects);
 
+//easily edit parameters for events / restrictions / time interval for sending requests
+const fadeDifference = 100
+const flickerDifference = 30
+const effectInterval = 300
+const fetchInterval = 300
 
 // manage the on/off state of the light 
 function manageOnOffState () {
@@ -43,18 +48,18 @@ function manageEffects(event) {
         // switch case statement (executes code depending on what button value it matches)
         switch (effectValue) {
             case '1':
-                fade = setInterval(fadeEffect, 400);
+                fade = setInterval(fadeEffect, effectInterval);
                 hueSlider.disabled = true;
                 break
             case '2':
                 randomColor();
                 break;
             case '3':
-                flicker = setInterval(flickerEffect, 400)
+                flicker = setInterval(flickerEffect, effectInterval)
                 briSlider.disabled = true;
                 break;
             case '4':
-                strobe = setInterval(randomColor, 400);
+                strobe = setInterval(randomColor, effectInterval);
                 hueSlider.disabled = true;
                 satSlider.disabled = true;
                 break;
@@ -70,7 +75,7 @@ function fadeEffect() {
     // get current value from slider
     let hueValue = parseInt(hueSlider.value);
     // add 100 units
-    hueValue += 100;
+    hueValue += fadeDifference;
     // once values exceed scale, return to 0
     if (hueValue > 65355) {
         hueValue = 0;
@@ -101,18 +106,15 @@ function randomColor() {
     updateBackground();
 }
 
-
+// flicker the lights (like a candle)
 function flickerEffect() {
     let briValue = parseInt(briSlider.value);
-    let min = briValue - 30;
-    let max = briValue + 30;
+    let min = briValue - flickerDifference;
+    let max = briValue + flickerDifference;
     let newValue = createRandNum(max, min);
     // ensure light doesn't turn off
     if (newValue < 10) {
         newValue = 10;
-    } else if (newValue > 210) {
-        newValue = 210
-    }
     briValue = newValue;
     briSlider.value = briValue
 }
@@ -194,5 +196,4 @@ function sendDataRequest() {
 // call the updateBackground function to set the initial color. will update as the eventListeners update
 updateBackground();
 // every 400 milliseconds, send data values from website to API
-sendData = setInterval(sendDataRequest, 400)
-  
+sendData = setInterval(sendDataRequest, fetchInterval)
