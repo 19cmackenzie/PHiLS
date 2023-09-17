@@ -6,7 +6,6 @@ const bodyColor = document.getElementById("bodyColor");
 const buttonContainer = document.getElementById('buttonContainer');
 const effectContainer = document.getElementById('effectContainer');
 const onOffButton = document.getElementById("onOff");
-let onOffState = onOffButton.checked;
 
 //EVENT LISTENERS
 hueSlider.addEventListener("input", updateBackground);
@@ -19,8 +18,9 @@ effectContainer.addEventListener('click', manageEffects);
 //easily edit parameters for events / restrictions / time interval for sending requests
 const fadeDifference = 100
 const flickerDifference = 30
-const effectInterval = 300
 const fetchInterval = 300
+const effectInterval = 200
+
 
 // manage the on/off state of the light 
 function manageOnOffState () {
@@ -74,12 +74,15 @@ function manageEffects(event) {
 function fadeEffect() {
     // get current value from slider
     let hueValue = parseInt(hueSlider.value);
+
     // add 100 units
     hueValue += fadeDifference;
+
     // once values exceed scale, return to 0
     if (hueValue > 65355) {
         hueValue = 0;
     }
+
     hueSlider.value = hueValue
     updateBackground();
 }
@@ -115,6 +118,10 @@ function flickerEffect() {
     // ensure light doesn't turn off
     if (newValue < 10) {
         newValue = 10;
+    }
+    if (newValue > 210) {
+        newValue = 210;
+    }
     briValue = newValue;
     briSlider.value = briValue
 }
